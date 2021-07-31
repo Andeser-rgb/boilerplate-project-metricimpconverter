@@ -13,6 +13,7 @@ module.exports = function(app) {
             let initNum = convertHandler.getNum(input);
             console.log(initNum);
             let initUnit = convertHandler.getUnit(input);
+            if(!checkUnit(initUnit)) res.send('invalid unit');
             let returnNum = convertHandler.convert(initNum, initUnit);
             let returnUnit = convertHandler.getReturnUnit(initUnit);
             let initUnitS = convertHandler.spellOutUnit(initUnit);
@@ -30,3 +31,31 @@ module.exports = function(app) {
         });
 
 };
+
+function checkUnit(unit){
+    let result = false;
+    switch(unit.toLowerCase()){
+        case "gal":
+            result = true;
+            break;
+        case "lbs":
+            result = true;
+            break;
+        case "mi":
+            result = true;
+            break;
+        case "l":
+            result = true;
+            break;
+        case "kg":
+            result = true;
+            break;
+        case "km":
+            result = true;
+            break;
+        default:
+        result = false;
+            break;
+        }
+    return result;
+}
