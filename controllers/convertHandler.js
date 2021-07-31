@@ -3,6 +3,8 @@ function ConvertHandler() {
     this.getNum = function(input) {
         let result;
         result = parseFloat(input.match(/[\d.]+/).join(""));
+        console.log(result);
+        if(typeof result !== 'number') result = undefined;
         return result;
     };
 
