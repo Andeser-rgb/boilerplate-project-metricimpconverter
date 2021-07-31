@@ -2,7 +2,7 @@ function ConvertHandler() {
 
     this.getNum = function(input) {
         let result;
-        result = parseInt(input.match(/[\d.]+/).join(""));
+        result = parseFloat(input.match(/[\d.]+/).join(""));
         return result;
     };
 
@@ -19,10 +19,10 @@ function ConvertHandler() {
             result = "L";
             break;
         case "lbs":
-            result = "Kg";
+            result = "kg";
             break;
         case "mi":
-            result = "Km";
+            result = "km";
             break;
         case "l":
             result = "gal";
@@ -31,7 +31,7 @@ function ConvertHandler() {
             result = "lbs";
             break;
         case "km":
-            result = "lbs";
+            result = "mi";
             break;
         default:
             break;
