@@ -25,7 +25,7 @@ module.exports = function(app) {
                 res.send({
                     initNum: initNum,
                     initUnit: initUnit,
-                    returnNum: returnNum,
+                    returnNum: parseFloat(returnNum),
                     returnUnit: returnUnit,
                     string: string
                 });

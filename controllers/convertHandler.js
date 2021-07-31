@@ -1,11 +1,30 @@
 function ConvertHandler() {
 
     this.getNum = function(input) {
+        console.log('input: ' + input);
         let result;
-        result = parseFloat(input.match(/[\d.]+/).join(""));
-        console.log(result);
-        if(typeof result !== 'number') result = undefined;
-        return result;
+        let slashes;
+        slashes = input.match(/\//g);
+        if(slashes === null){
+          result = input.match(/[\d.]+/);
+          console.log("result: " + result);
+          if(result === null) return 1;
+          result = parseFloat(result.join(''));
+          console.log("result: " + result + '\n');
+          if(typeof result !== 'number') result = undefined;
+          return result;
+        }
+        if(slashes.length > 1) return undefined;
+        if(slashes.length === 1){
+          let numbers = input.match(/[\d.]+/g);
+          let num1 = parseFloat(numbers[0]);
+          let num2 = parseFloat(numbers[1]);
+          result = num1 / num2;
+          if(typeof result !== 'number') 
+          result = undefined;
+          return result;
+        }
+        
     };
 
     this.getUnit = function(input) {
