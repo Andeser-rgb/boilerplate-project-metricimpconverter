@@ -9,6 +9,8 @@ function ConvertHandler() {
     this.getUnit = function(input) {
         let result;
         result = input.match(/[A-Za-z]/g).join('');
+        result = result.toLowerCase();
+        if(result === 'l') result.toUpperCase();
         return result;
     };
 
