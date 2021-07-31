@@ -13,7 +13,9 @@ module.exports = function(app) {
             let initNum = convertHandler.getNum(input);
             console.log(initNum);
             let initUnit = convertHandler.getUnit(input);
+            if(!chekUnit(initUnit) && (initNum === undefined || initNum === null)) res.send('invalid number and unit');
             if(!checkUnit(initUnit)) res.send('invalid unit');
+            if(initNum === undefined || initNum === null) res.send('invalid number');
             let returnNum = convertHandler.convert(initNum, initUnit);
             let returnUnit = convertHandler.getReturnUnit(initUnit);
             let initUnitS = convertHandler.spellOutUnit(initUnit);
