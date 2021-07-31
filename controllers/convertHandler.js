@@ -10,7 +10,7 @@ function ConvertHandler() {
         let result;
         result = input.match(/[A-Za-z]/g).join('');
         result = result.toLowerCase();
-        if(result === 'l') result.toUpperCase();
+        if(result === 'l') result = result.toUpperCase();
         return result;
     };
 
