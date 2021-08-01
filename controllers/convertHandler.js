@@ -11,7 +11,7 @@ function ConvertHandler() {
             result = parseFloat(result.join(''));
         }
 
-        else if (slashes.length > 1) throw new Error('Double fraction not allowed');
+        else if (slashes.length > 1) return undefined;
         else if (slashes.length === 1) {
             let numbers = input.match(/[\d.]+/g);
             let num1 = parseFloat(numbers[0]);
@@ -24,10 +24,12 @@ function ConvertHandler() {
     };
 
     this.getUnit = function(input) {
-        let result;
+        let units = ['gal', 'L', 'km', 'mi', 'kg', 'lbs'];
+        let result = undefined;
         result = input.match(/[A-Za-z]/g).join('');
         result = result.toLowerCase();
         if (result === 'l') result = result.toUpperCase();
+        if(!units.includes(result)) return undefined;
         return result;
     };
 
@@ -60,29 +62,15 @@ function ConvertHandler() {
 
     this.spellOutUnit = function(unit) {
         let result;
-        switch (unit.toLowerCase()) {
-            case "gal":
-                result = "gallons";
-                break;
-            case "lbs":
-                result = "pounds";
-                break;
-            case "mi":
-                result = "miles";
-                break;
-            case "l":
-                result = "liters";
-                break;
-            case "kg":
-                result = "kilograms";
-                break;
-            case "km":
-                result = "kilometers";
-                break;
-            default:
-                break;
-        }
-        return result;
+        const spelled = {
+            "gal": "gallons",
+            "lbs": "pounds",
+            "mi": "miles",
+            "l": "liters",
+            "kg": "kilograms",
+            "km": "kilometers"
+        };
+        return spelled[unit.toLowerCase()];
     };
 
     this.convert = function(initNum, initUnit) {
@@ -114,7 +102,7 @@ function ConvertHandler() {
                 break;
         }
 
-        return result.toFixed(5);
+        return parseFloat(result.toFixed(5));
     };
 
     this.getString = function(initNum, initUnit, returnNum, returnUnit) {

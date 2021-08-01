@@ -11,9 +11,9 @@ module.exports = function(app) {
             let input = req.query.input;
             let initNum = convertHandler.getNum(input);
             let initUnit = convertHandler.getUnit(input);
-            if (!checkUnit(initUnit) && !(typeof initNum === 'number')) res.send('invalid number and unit');
-            else if (!checkUnit(initUnit)) res.send('invalid unit');
-            else if (!(typeof initNum === 'number')) res.send('invalid number');
+            if (initUnit === undefined && initNum === undefined) res.send('invalid number and unit');
+            else if (initUnit === undefined) res.send('invalid unit');
+            else if (initNum === undefined) res.send('invalid number');
             else {
                 let returnNum = convertHandler.convert(initNum, initUnit);
                 let returnUnit = convertHandler.getReturnUnit(initUnit);
@@ -33,31 +33,3 @@ module.exports = function(app) {
         });
 
 };
-
-function checkUnit(unit) {
-    let result = false;
-    switch (unit.toLowerCase()) {
-        case "gal":
-            result = true;
-            break;
-        case "lbs":
-            result = true;
-            break;
-        case "mi":
-            result = true;
-            break;
-        case "l":
-            result = true;
-            break;
-        case "kg":
-            result = true;
-            break;
-        case "km":
-            result = true;
-            break;
-        default:
-            result = false;
-            break;
-    }
-    return result;
-}
